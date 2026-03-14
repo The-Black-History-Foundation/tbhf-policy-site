@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Bitcoin | The Black History Foundation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .donate-btc-page {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+        .donate-btc-container {
+            background: var(--color-white);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        .donate-btc-page h1 {
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            margin: 0 0 var(--space-md);
+        }
+        .donate-btc-page h3 {
+            margin: var(--space-xl) 0 var(--space-sm);
+            font-size: 1.1rem;
+        }
+        .donate-btc-address {
+            font-size: 0.9rem;
+            word-break: break-all;
+            background: var(--color-bg-alt);
+            padding: var(--space-md);
+            border-radius: var(--radius);
+            margin-top: var(--space-sm);
+            font-family: monospace;
+            border: 1px solid var(--color-border);
+        }
+        .donate-btc-copy {
+            background: var(--color-accent);
+            color: var(--color-text);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: var(--space-md);
+        }
+        .donate-btc-copy:hover {
+            background: var(--color-accent-hover);
+        }
+        .donate-btc-qr {
+            margin-top: var(--space-xl);
+            text-align: center;
+        }
+        .donate-btc-qr img {
+            border-radius: var(--radius);
+            margin: 0 auto;
+        }
+        .donate-btc-back {
+            display: inline-block;
+            margin-top: var(--space-xl);
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .donate-btc-back:hover {
+            color: var(--color-accent-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="donate-btc-page">
+        <div class="donate-btc-container">
+            <h1>Support the Preservation of Black History</h1>
+            <p>Your Bitcoin donation helps the Black History Foundation preserve historical records, support education, and protect cultural heritage for future generations.</p>
+
+            <h3>Bitcoin Address</h3>
+            <div class="donate-btc-address" id="btcAddress">bc1q... (loading)</div>
+            <button type="button" class="donate-btc-copy" id="copyBtn">Copy Address</button>
+
+            <div class="donate-btc-qr" id="qrContainer">
+                <img id="qrImage" src="" alt="Bitcoin QR code" width="250" height="250">
+            </div>
+
+            <p style="margin-top: var(--space-xl)">Scan the QR code or send Bitcoin to the address above.</p>
+
+            <a href="index.html#donate" class="donate-btc-back">&larr; Back to Donate</a>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        (function() {
+            const config = window.TBHF_CONFIG || {};
+            const address = config.BITCOIN_ADDRESS || 'bc1q... (add your Bitcoin address in config.js)';
+            const addressEl = document.getElementById('btcAddress');
+            const qrImage = document.getElementById('qrImage');
+            const copyBtn = document.getElementById('copyBtn');
+
+            if (addressEl) {
+                addressEl.textContent = address;
+            }
+
+            if (qrImage && address && !address.includes('...')) {
+                qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent('bitcoin:' + address);
+            } else {
+                document.getElementById('qrContainer').style.display = 'none';
+            }
+
+            if (copyBtn) {
+                copyBtn.addEventListener('click', function() {
+                    const text = addressEl.textContent.trim();
+                    if (!text || text.includes('...')) return;
+                    navigator.clipboard.writeText(text).then(function() {
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(function() { copyBtn.textContent = 'Copy Address'; }, 2000);
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
