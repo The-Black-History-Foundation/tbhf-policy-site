@@ -1,66 +1,116 @@
 # TBHF Policy Site
 
-Static policy and landing site for **The Black History Foundation** — mission, donate (Bitcoin + Fiat), volunteer, and FAQ.
+Policy and landing site for **The Black History Foundation** — federal policies affecting Black history preservation, mission, donate (Bitcoin + Fiat), volunteer, and FAQ.
 
 ## Features
 
-- **Hero** — Logo, mission statement, unity image, Donate/Get Involved CTAs
-- **Mission** — Four value areas with images: Cultural Heritage, Innovation, Community, Education
-- **Donate** — Bitcoin (Lightning + on-chain) and Fiat (Zeffy embedded form)
-- **Bitcoin modal** — QR code and address in a popup modal; also available as standalone `donate-bitcoin.html`
-- **Volunteer** — Four roles with links to tbhfdn.org
-- **FAQ** — Common questions about donations and involvement
+- **Policy database** — Federal policies (Bills and Executive Orders) with impact (positive/negative/mixed), filters, search, and sort
+- **Firebase backend** — Firestore for policies, Auth for admin
+- **Congress.gov API** — Fetch bill data for policy entries
+- **Federal Register API** — Search and fetch Executive Orders by number or keyword
+- **Admin page** — Manage policies, AI agent to search/recommend/fetch (bills + EOs), tabbed UI (AI Agent / Policies & EOs)
+- **Take Action** — Find your rep, volunteer, donate, subscribe
+- **Donate** — Bitcoin (Lightning + on-chain) and Fiat (Zeffy)
+- **Navigation** — Main nav includes Home (top of home page), Mission, Policies, Take Action, FAQ, Contact, Donate
 
 ## Project Structure
 
 ```
 tbhf-policy-site/
-├── index.html          # Main page
-├── donate-bitcoin.html # Standalone Bitcoin donation page (QR code)
-├── styles.css
-├── main.js
-├── config.js
-├── public/
-│   ├── logo.png
-│   ├── unity.png
-│   ├── cultural.png
-│   ├── innovation.png
-│   ├── community.png
-│   └── education.png
-└── README.md
+├── index.html
+├── policies.html
+├── policy.html
+├── admin.html
+├── donate-bitcoin.html
+├── package.json
+├── vite.config.js
+├── .env.example          # Copy to .env
+├── .env                  # Your secrets (gitignored)
+├── src/
+│   ├── config.js             # Reads from import.meta.env
+│   ├── main.js
+│   ├── firebase-app.js
+│   ├── congress-api.js
+│   ├── federal-register-api.js  # Federal Register API for Executive Orders
+│   ├── policies.js
+│   ├── policies-page.js
+│   ├── policy-detail.js
+│   ├── policy-detail.css
+│   ├── admin.js
+│   └── donate-btc.js
+├── functions/             # Cloud Functions (AI agent)
+├── data/
+└── public/                # Static assets (logo, images)
 ```
 
 ## Setup
 
-1. **Configure** `config.js`:
-   - `BITCOIN_ADDRESS` — On-chain Bitcoin address (required for QR code and copy)
-   - `BTCPAY_URL` — BTCPay Server payment page (Lightning + on-chain), or leave empty
-   - `LIGHTNING_ADDRESS` or `LIGHTNING_LNURL` — Optional Lightning options
-   - `DDME_URL` — DDME platform (if re-enabled)
-   - `VOLUNTEER_URL` — Volunteer page (default: tbhfdn.org/volunteer)
+### 1. Install dependencies
 
-2. **Serve** the site (static files):
-   ```bash
-   # Option A: Python
-   python -m http.server 5500
+```bash
+npm install
+```
 
-   # Option B: Node
-   npx serve .
+### 2. Environment variables
 
-   # Option C: Open index.html directly (some features may not work)
-   ```
+Copy `.env.example` to `.env` and fill in your values:
 
-3. **Deploy** to Netlify, Vercel, GitHub Pages, or any static host.
+```bash
+cp .env.example .env
+```
 
-## Bitcoin Donations
+Edit `.env`:
+- `VITE_BITCOIN_ADDRESS`, `VITE_BTCPAY_URL`, `VITE_LIGHTNING_ADDRESS` / `VITE_LIGHTNING_LNURL`
+- `VITE_VOLUNTEER_URL`
+- `VITE_CONGRESS_API_KEY` — free at [api.data.gov/signup](https://api.data.gov/signup/)
+- `VITE_AI_AGENT_URL` — optional; Cloud Function URL for AI summary drafting
+- `VITE_FIREBASE_*` — from Firebase Console > Project Settings > Your apps
 
-- **On-chain**: Set `BITCOIN_ADDRESS` in config. Copy button and QR code (in modal or `donate-bitcoin.html`) use this address.
-- **Lightning**: Set `BTCPAY_URL`, `LIGHTNING_ADDRESS`, or `LIGHTNING_LNURL` in config. If none are set, the Lightning button shows "Configure Lightning in config.js".
-- **Modal**: Click "View donation page with QR code" to open a popup with address and QR code.
+### 3. Firebase
 
-## Fiat Donations
+1. Create project at [console.firebase.google.com](https://console.firebase.google.com)
+2. Enable **Firestore** and **Authentication** (Email/Password)
+3. Create an admin user in Authentication > Users
+4. Deploy: `firebase deploy`
 
-Embedded Zeffy donation form for credit card, debit card, and bank transfer.
+### 4. Run
+
+```bash
+npm run dev      # Development server (http://localhost:5173)
+npm run build    # Build for production (output in dist/)
+npm run preview  # Preview production build
+```
+
+## AI Agent (Cloud Function - Claude)
+
+You only need your Claude API key. The AI agent URL is created when you deploy the function.
+
+1. `cd functions && npm install`
+2. Deploy: `firebase deploy --only functions`
+3. On first deploy, the CLI will prompt for `ANTHROPIC_API_KEY` — enter your Claude key (starts with `sk-ant-`)
+4. After deploy, Firebase prints the function URL. Copy it into `.env` as `VITE_AI_AGENT_URL`
+
+To update the key later: create/update the secret in [Google Cloud Secret Manager](https://console.cloud.google.com/security/secret-manager), then redeploy.
+
+## Admin
+
+- URL: `admin.html` (or `/admin.html` in dev)
+- Sign in with Firebase Auth
+- **Tabs**: AI Agent (search/fetch) and Policies & EOs (list + form)
+- Add policies manually or fetch from Congress.gov (bills) or Federal Register (Executive Orders)
+- Policy type: Bill or Executive Order — conditional fields for congress/bill number vs EO number and Federal Register URL
+- Use AI agent to search Executive Orders by keyword, fetch by EO number, or fetch bills by number
+- Use AI agent to draft impact summaries (requires Cloud Function)
+
+## Policies Page
+
+- **Filters**: Type (Bill / Executive Order), Impact, Status, Search
+- **Sort**: Newest first, Oldest first, Title A–Z, Title Z–A, Impact
+
+## Policy Detail Page
+
+- Full-width layout for readability
+- Executive Orders: Federal Register link; summary hidden by default with "Show Executive Order Summary" toggle
 
 ## License
 

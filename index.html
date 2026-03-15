@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The Black History Foundation - Save Black History. Protect, Preserve, Empower. Preserving African history and diaspora heritage through education, technology, and community.">
     <title>Save Black History | The Black History Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header class="site-header">
         <div class="header-inner">
             <a href="#hero" class="header-logo-link">
-                <img src="public/logo.png" alt="The Black History Foundation" class="header-logo">
+                <img src="/logo.png" alt="The Black History Foundation" class="header-logo">
             </a>
             <h1 class="logo">The Black History Foundation</h1>
             <nav class="main-nav">
                 <ul>
+                    <li><a href="#hero">Home</a></li>
                     <li><a href="#mission">Mission</a></li>
-                    <li><a href="#volunteer">Get Involved</a></li>
+                    <li><a href="policies.html">Policies</a></li>
+                    <li><a href="#take-action">Take Action</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#donate" class="btn btn-primary nav-donate">Donate</a></li>
@@ -30,22 +32,23 @@
         <!-- Hero -->
         <section class="hero" id="hero">
             <div class="hero-content">
-                <img src="public/logo.png" alt="The Black History Foundation" class="hero-logo">
-                <h2>Save Black History</h2>
-                <p class="hero-subtitle">Protect, Preserve, Empower</p>
+                <img src="/logo.png" alt="The Black History Foundation" class="hero-logo">
+                <h2>Protect, Preserve, Empower</h2>
                 <div class="hero-body">
                     <div class="hero-text-block">
                         <p class="hero-text">Black history is a vital part of the story of humanity, yet many of the records, artifacts, and stories that document the experiences of people of African descent are at risk of being lost, ignored, or erased. The Black History Foundation is committed to protecting this legacy by preserving historical records, supporting education, and empowering communities to safeguard their own stories.</p>
                         <p class="hero-text">Through research, digital preservation, community partnerships, and educational initiatives, we work to ensure that the achievements, struggles, and contributions of Black communities remain visible and accessible for generations to come.</p>
+                        <p class="hero-text"><strong>This platform also allows the public to monitor federal policies and legislation that affect Black history preservation,</strong> providing access to policy analysis, impact summaries, and tools that help citizens understand how government actions may influence the protection of cultural heritage.</p>
                         <p class="hero-text hero-text--highlight">History shapes identity. When we protect our past, we strengthen our future.</p>
                     </div>
                     <div class="hero-image-wrap">
-                        <img src="public/unity.png" alt="Unity" class="hero-unity-image">
+                        <img src="/unity.png" alt="Unity" class="hero-unity-image">
                     </div>
                 </div>
                 <div class="hero-cta">
-                    <a href="#donate" class="btn btn-primary">Donate Now</a>
-                    <a href="#volunteer" class="btn btn-secondary">Get Involved</a>
+                    <a href="policies.html" class="btn btn-primary">Policy Watch</a>
+                    <a href="#donate" class="btn btn-secondary">Donate Now</a>
+                    <a href="#take-action" class="btn btn-outline">Take Action</a>
                 </div>
             </div>
         </section>
@@ -58,7 +61,7 @@
 
             <div class="mission-value mission-value--image-left">
                 <div class="mission-value-image">
-                    <img src="public/cultural.png" alt="Cultural Heritage">
+                    <img src="/cultural.png" alt="Cultural Heritage">
                 </div>
                 <div class="mission-value-content">
                     <h3>Cultural Heritage</h3>
@@ -68,7 +71,7 @@
 
             <div class="mission-value mission-value--image-right">
                 <div class="mission-value-image">
-                    <img src="public/innovation.png" alt="Innovation">
+                    <img src="/innovation.png" alt="Innovation">
                 </div>
                 <div class="mission-value-content">
                     <h3>Innovation</h3>
@@ -78,7 +81,7 @@
 
             <div class="mission-value mission-value--image-left">
                 <div class="mission-value-image">
-                    <img src="public/community.png" alt="Community">
+                    <img src="/community.png" alt="Community">
                 </div>
                 <div class="mission-value-content">
                     <h3>Community</h3>
@@ -88,7 +91,7 @@
 
             <div class="mission-value mission-value--image-right">
                 <div class="mission-value-image">
-                    <img src="public/education.png" alt="Education">
+                    <img src="/education.png" alt="Education">
                 </div>
                 <div class="mission-value-content">
                     <h3>Education</h3>
@@ -97,8 +100,50 @@
             </div>
         </section>
 
+        <!-- Policy Impact -->
+        <section class="section" id="policy-impact">
+            <h2>Federal Policy Impact</h2>
+            <p class="lead lead-full">Federal policies shape how Black history is preserved, taught, and celebrated. We track legislation that helps or hinders this mission.</p>
+            <div id="policy-impact-cards" class="policy-cards policy-cards--featured">
+                <p class="policy-loading" id="policy-impact-loading">Loading policies...</p>
+            </div>
+            <a href="policies.html" class="btn btn-primary">View All Policies</a>
+        </section>
+
+        <!-- Take Action -->
+        <section class="section section-alt" id="take-action">
+            <h2>Take Action</h2>
+            <p class="lead lead-full">Your voice matters. Here are ways to support the preservation of Black history.</p>
+            <div class="take-action-grid">
+                <div class="take-action-card">
+                    <span class="take-action-icon">&#9998;</span>
+                    <h3>Contact Your Representatives</h3>
+                    <p>Tell your members of Congress to support legislation that preserves and teaches Black history.</p>
+                    <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener" class="btn btn-outline">Find Your Rep</a>
+                </div>
+                <div class="take-action-card">
+                    <span class="take-action-icon">&#128214;</span>
+                    <h3>Volunteer</h3>
+                    <p>Research, document, and share Black history in your community.</p>
+                    <a href="#volunteer" class="btn btn-outline">Get Involved</a>
+                </div>
+                <div class="take-action-card">
+                    <span class="take-action-icon">&#128176;</span>
+                    <h3>Donate</h3>
+                    <p>Support digitization, education programs, and community workshops.</p>
+                    <a href="#donate" class="btn btn-outline">Donate</a>
+                </div>
+                <div class="take-action-card">
+                    <span class="take-action-icon">&#128172;</span>
+                    <h3>Stay Informed</h3>
+                    <p>Subscribe for policy alerts and updates on legislation affecting Black history.</p>
+                    <a href="#contact" class="btn btn-outline">Subscribe</a>
+                </div>
+            </div>
+        </section>
+
         <!-- Donate -->
-        <section class="section section-alt" id="donate">
+        <section class="section" id="donate">
             <h2>Support Our Mission</h2>
             <p class="lead lead-full">Your donation helps us preserve Black history for future generations. Every contribution, no matter the size, makes a meaningful impact.</p>
 
@@ -116,7 +161,7 @@
                             <h4>On-Chain Bitcoin</h4>
                             <p class="bitcoin-desc">Traditional Bitcoin address</p>
                             <div class="address-wrap">
-                                <code id="bitcoin-address">bc1q... (configure in config.js)</code>
+                                <code id="bitcoin-address">bc1q... (add to .env)</code>
                                 <button type="button" class="btn-copy" id="copy-btc-btn" title="Copy address">Copy</button>
                             </div>
                             <button type="button" class="btn btn-outline donate-btc-page-link" id="donate-btc-modal-btn">View donation page with QR code</button>
@@ -134,7 +179,7 @@
         </section>
 
         <!-- Volunteer -->
-        <section class="section" id="volunteer">
+        <section class="section section-alt" id="volunteer">
             <h2>Be a Guardian of Black History</h2>
             <p class="lead lead-full">We need dedicated volunteers to research, document, and share Black history. Your time and skills can make a lasting impact.</p>
             <div class="volunteer-grid">
@@ -163,7 +208,7 @@
         </section>
 
         <!-- FAQ -->
-        <section class="section section-alt" id="faq">
+        <section class="section" id="faq">
             <h2>Frequently Asked Questions</h2>
             <dl class="faq-list">
                 <dt>What is the 'Save Black History' campaign?</dt>
@@ -187,7 +232,7 @@
         </section>
 
         <!-- Contact -->
-        <section class="section" id="contact">
+        <section class="section section-alt" id="contact">
             <h2>Contact Us</h2>
             <p>Email: <a href="mailto:info@blackhistoryfoundation.org">info@blackhistoryfoundation.org</a></p>
             <p><a href="https://tbhfdn.org" target="_blank" rel="noopener">Visit tbhfdn.org</a></p>
@@ -195,10 +240,21 @@
             <div class="newsletter">
                 <h3>Stay Updated</h3>
                 <p>Subscribe for updates on our programs, events, and how you can contribute to preserving Black history.</p>
-                <form class="newsletter-form" action="#" method="post" aria-label="Newsletter signup">
-                    <input type="email" name="email" placeholder="Your email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
+                <div class="newsletter-form-wrap">
+                    <form class="newsletter-form" action="#" method="post" aria-label="Newsletter signup">
+                        <div class="newsletter-error" id="newsletter-error" role="alert" hidden></div>
+                        <input type="email" name="email" id="newsletter-email" placeholder="Your email" required>
+                        <button type="submit" class="btn btn-primary" id="newsletter-submit">Subscribe</button>
+                    </form>
+                    <div class="newsletter-success newsletter-success--pending" id="newsletter-pending" hidden>
+                        <p class="newsletter-success-title">Check Your Inbox</p>
+                        <p>We've sent a confirmation link to your email. Click the link to complete your subscription and start receiving updates on our mission to preserve Black history.</p>
+                    </div>
+                    <div class="newsletter-success newsletter-success--confirmed" id="newsletter-confirmed" hidden>
+                        <p class="newsletter-success-title">Thank You for Subscribing!</p>
+                        <p>You've been added to our newsletter. Watch your inbox for updates on our mission to preserve Black history.</p>
+                    </div>
+                </div>
                 <p class="newsletter-note">By subscribing, you agree to our Privacy Policy and consent to receive updates from The Black History Foundation.</p>
             </div>
         </section>
@@ -208,10 +264,11 @@
         <div class="footer-inner">
             <p>The Black History Foundation is dedicated to empowering the African diaspora by preserving and promoting African history, culture, and heritage.</p>
             <nav class="footer-nav">
-                <a href="https://tbhfdn.org/about" target="_blank" rel="noopener">Our Mission</a>
+                <a href="#mission">Mission</a>
+                <a href="policies.html">Policies</a>
                 <a href="https://tbhfdn.org/volunteer" target="_blank" rel="noopener">Volunteer</a>
                 <a href="https://tbhfdn.org/donate" target="_blank" rel="noopener">Donate</a>
-                <a href="https://tbhfdn.org/contact" target="_blank" rel="noopener">Contact</a>
+                <a href="admin.html">Admin</a>
             </nav>
             <p class="copyright">&copy; 2026 The Black History Foundation. All rights reserved.</p>
         </div>
@@ -225,7 +282,7 @@
                 <h2 id="modal-title">Support the Preservation of Black History</h2>
                 <p>Your Bitcoin donation helps the Black History Foundation preserve historical records, support education, and protect cultural heritage for future generations.</p>
                 <h3>Bitcoin Address</h3>
-                <div class="donate-btc-address" id="modal-btc-address">bc1q... (configure in config.js)</div>
+                <div class="donate-btc-address" id="modal-btc-address">bc1q... (add to .env)</div>
                 <button type="button" class="donate-btc-copy" id="modal-copy-btn">Copy Address</button>
                 <div class="donate-btc-qr" id="modal-qr-container">
                     <img id="modal-qr-image" src="" alt="Bitcoin QR code" width="250" height="250">
@@ -235,7 +292,8 @@
         </div>
     </div>
 
-    <script src="config.js"></script>
-    <script src="main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

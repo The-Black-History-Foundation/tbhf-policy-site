@@ -1,0 +1,46 @@
+/* Policy detail - full width (imported by policy-detail.js, loads with page) */
+body.policy-page .policy-detail-main,
+body.policy-page .policy-detail-section,
+body.policy-page #policy-detail-content,
+body.policy-page .policy-detail,
+body.policy-page .policy-detail-summary,
+body.policy-page .policy-detail-summary p,
+body.policy-page .policy-detail-details,
+body.policy-page .policy-detail-details p,
+body.policy-page .policy-detail-links {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+/* Summary section - override any reading-width constraints (e.g. .lead 72ch) */
+body.policy-page .policy-detail-summary-fullwidth,
+body.policy-page .policy-detail-summary-fullwidth *,
+body.policy-page .policy-detail-summary,
+body.policy-page .policy-detail-summary * {
+  max-width: none !important;
+  width: 100% !important;
+}
+body.policy-page .policy-detail-summary .lead,
+body.policy-page .policy-detail-summary p {
+  max-width: none !important;
+}
+body.policy-page .policy-detail-section {
+  padding: var(--space-3xl) var(--space-lg);
+  margin: 0 !important;
+}
+
+.policy-summary-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.policy-summary-toggle:hover {
+  color: var(--color-accent-hover);
+}
+.policy-detail-summary-wrap {
+  margin-bottom: var(--space-xl);
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "title": "African American History Act",
+    "shortTitle": "African American History Act",
+    "billNumber": "H.R. 765",
+    "congress": 118,
+    "impact": "positive",
+    "status": "pending",
+    "summary": "Authorizes the Director of the National Museum of African American History and Culture to support African American history education programs, including digital and interactive technologies, in collaboration with schools.",
+    "details": "This legislation would expand resources for teaching African American history in K-12 and higher education. By partnering with the National Museum of African American History and Culture, it strengthens the institutional support for preserving and sharing Black history through educational programs.",
+    "links": {
+      "congressGov": "https://www.congress.gov/bill/118th-congress/house-bill/765",
+      "govTrack": "https://www.govtrack.us/congress/bills/118/hr765"
+    },
+    "categories": ["education", "museums"],
+    "actionItems": ["Contact your representative to support H.R. 765"]
+  },
+  {
+    "title": "Juneteenth National Independence Day Act",
+    "shortTitle": "Juneteenth National Holiday",
+    "billNumber": "S. 475",
+    "congress": 117,
+    "impact": "positive",
+    "status": "enacted",
+    "summary": "Established Juneteenth (June 19) as a federal holiday, the first new federal holiday in 41 years. Commemorates the end of slavery in the United States.",
+    "details": "Making Juneteenth a federal holiday elevates the recognition of Black history and the end of slavery in national consciousness. It provides an annual opportunity for education and reflection on the legacy of slavery and the contributions of African Americans.",
+    "links": {
+      "congressGov": "https://www.congress.gov/bill/117th-congress/senate-bill/475",
+      "govTrack": "https://www.govtrack.us/congress/bills/117/s475"
+    },
+    "categories": ["cultural", "recognition"],
+    "actionItems": []
+  },
+  {
+    "title": "National Underground Railroad Network to Freedom Act",
+    "shortTitle": "Underground Railroad Network",
+    "billNumber": "Public Law 105-203",
+    "congress": 105,
+    "impact": "positive",
+    "status": "enacted",
+    "summary": "Authorizes the National Park Service to coordinate federal and non-federal activities to commemorate, honor, and interpret the history of the Underground Railroad and its significance to the civil rights movement.",
+    "details": "This law established a framework for preserving and interpreting sites related to the Underground Railroad. It ensures that this critical chapter in Black history and the fight for freedom is documented and shared with the public.",
+    "links": {
+      "congressGov": "https://www.congress.gov/bill/105th-congress/house-bill/1635",
+      "govTrack": "https://www.govtrack.us/congress/bills/105/hr1635"
+    },
+    "categories": ["monuments", "archives", "education"],
+    "actionItems": []
+  }
+]

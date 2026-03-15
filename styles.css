@@ -267,6 +267,7 @@ a:hover {
 .hero-text--highlight {
   font-size: 1.2rem;
   font-weight: 600;
+  font-style: italic;
   color: var(--color-accent-light);
   font-style: italic;
 }
@@ -526,17 +527,6 @@ a:hover {
 .program-card p {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--color-text-muted);
-}
-
-/* DDME */
-.ddme-features {
-  margin: var(--space-lg) 0;
-  padding-left: 1.5rem;
-}
-
-.ddme-features li {
-  margin-bottom: var(--space-sm);
   color: var(--color-text-muted);
 }
 
@@ -874,6 +864,34 @@ a:hover {
   margin-top: var(--space-sm);
 }
 
+.newsletter-error {
+  width: 100%;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+.newsletter-success {
+  padding: var(--space-lg);
+  margin: var(--space-md) 0;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.newsletter-success-title {
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+}
+
+.newsletter-success p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
 /* Footer */
 .site-footer {
   background: var(--color-bg-hero);
@@ -960,4 +978,222 @@ a:hover {
   .hero-cta .btn {
     width: 100%;
   }
+}
+
+/* Policy cards */
+.policy-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+
+.policy-cards--featured {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.policy-card {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.policy-card h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.1rem;
+}
+
+.policy-card h3 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.policy-card h3 a:hover {
+  color: var(--color-accent);
+}
+
+.policy-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.policy-badge--positive {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.policy-badge--negative {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.policy-badge--mixed {
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+}
+
+.policy-card-summary {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.policy-card-meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.policy-loading,
+.policy-empty {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Policy filters */
+.policy-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+  align-items: flex-end;
+}
+
+.policy-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.policy-filter-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.policy-filter-group select,
+.policy-filter-group input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  min-width: 140px;
+}
+
+.policy-filter-search input {
+  min-width: 220px;
+}
+
+/* Policy detail - full-width layout (no .section to avoid max-width inheritance) */
+.policy-detail-main {
+  width: 100%;
+}
+
+.policy-detail-section {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--space-3xl) var(--space-lg);
+  box-sizing: border-box;
+}
+
+.policy-detail-main #policy-detail-content,
+.policy-detail-main .policy-detail,
+.policy-detail-main .policy-detail-summary,
+.policy-detail-main .policy-detail-details,
+.policy-detail-main .policy-detail-links {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+.policy-back {
+  display: inline-block;
+  margin-bottom: var(--space-xl);
+  font-weight: 500;
+}
+
+.policy-detail h1 {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-display);
+}
+
+.policy-detail-meta {
+  margin: 0 0 var(--space-xl);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.policy-detail-summary,
+.policy-detail-details,
+.policy-detail-links,
+.policy-actions {
+  margin-bottom: var(--space-xl);
+}
+
+.policy-detail-summary p,
+.policy-detail-details p {
+  max-width: none;
+}
+
+.policy-detail-summary h3,
+.policy-detail-details h3,
+.policy-detail-links h3,
+.policy-actions h3 {
+  font-size: 1rem;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.policy-actions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.policy-actions li {
+  margin-bottom: var(--space-sm);
+}
+
+/* Take Action */
+.take-action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+
+.take-action-card {
+  background: var(--color-white);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.take-action-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.take-action-card h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.1rem;
+}
+
+.take-action-card p {
+  margin: 0 0 var(--space-md);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.nav-active {
+  font-weight: 600;
 }

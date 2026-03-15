@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | TBHF Policy Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .admin-wrap { width: 100%; max-width: none; margin: 0; padding: var(--space-xl); box-sizing: border-box; }
+      .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md); }
+      .admin-auth { padding: var(--space-xl); background: var(--color-bg-alt); border-radius: var(--radius-lg); max-width: 360px; }
+      .admin-auth input { width: 100%; padding: 0.5rem; margin-bottom: var(--space-sm); border: 1px solid var(--color-border); border-radius: var(--radius); }
+      .admin-section { margin-bottom: var(--space-2xl); width: 100%; }
+      .admin-section h2 { margin-bottom: var(--space-md); }
+      .policy-list { list-style: none; padding: 0; margin: 0; }
+      .policy-list li { display: flex; align-items: center; justify-content: space-between; padding: var(--space-md); border-bottom: 1px solid var(--color-border); gap: var(--space-md); flex-wrap: wrap; }
+      .policy-list li:hover { background: var(--color-bg-alt); }
+      .policy-form { display: grid; grid-template-columns: 1fr; gap: var(--space-md); width: 100%; max-width: none; }
+      .policy-form > div { min-width: 0; }
+      .policy-form label { display: block; font-weight: 600; font-size: 0.9rem; }
+      .policy-form input, .policy-form select, .policy-form textarea { width: 100%; box-sizing: border-box; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius); font-family: inherit; }
+      .policy-form textarea { min-height: 80px; resize: vertical; }
+      .policy-form #policy-summary { min-height: 200px; }
+      .policy-form #policy-details { min-height: 250px; }
+      .ai-agent { background: var(--color-bg-alt); padding: var(--space-xl); border-radius: var(--radius-lg); margin-bottom: var(--space-xl); }
+      .ai-agent h3 { margin-top: 0; }
+      .ai-agent-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; margin-top: var(--space-md); }
+      .ai-agent input { flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: var(--radius); }
+      .ai-agent-output { margin-top: var(--space-md); padding: var(--space-md); background: var(--color-white); border-radius: var(--radius); border: 1px solid var(--color-border); font-size: 0.9rem; white-space: pre-wrap; }
+      .ai-search-result { padding: 0.5rem 0; border-bottom: 1px solid var(--color-border); cursor: pointer; }
+      .ai-search-result:hover { background: var(--color-bg-alt); }
+      .ai-search-meta { font-size: 0.85em; color: var(--color-text-muted, #666); }
+      .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.85rem; }
+      .policy-form-actions { display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+      .ai-draft-status { font-size: 0.9rem; color: var(--color-text-muted, #666); }
+      .hidden { display: none !important; }
+      #admin-content { width: 100%; }
+      .admin-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--color-border); margin-bottom: var(--space-xl); }
+      .admin-tab { padding: 0.75rem 1.25rem; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-bottom: none; cursor: pointer; font-weight: 600; font-size: 0.95rem; }
+      .admin-tab:first-child { border-radius: var(--radius) 0 0 0; }
+      .admin-tab:last-child { border-radius: 0 var(--radius) 0 0; }
+      .admin-tab:hover { background: var(--color-white); }
+      .admin-tab.active { background: var(--color-white); margin-bottom: -2px; border-bottom: 2px solid var(--color-white); }
+      .admin-tab-panel { display: none; }
+      .admin-tab-panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="admin-wrap">
+        <header class="admin-header">
+            <h1>TBHF Policy Admin</h1>
+            <div style="display: flex; align-items: center; gap: var(--space-md);">
+                <a href="index.html" class="btn btn-outline btn-sm">← Home</a>
+                <div id="admin-auth-state"></div>
+            </div>
+        </header>
+
+        <div id="admin-auth-form" class="admin-auth">
+            <h2>Sign In</h2>
+            <form id="admin-login-form">
+                <input type="email" id="admin-email" placeholder="Email" required>
+                <input type="password" id="admin-password" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+            <p id="admin-auth-error" class="hidden" style="color: #c62828; margin-top: var(--space-sm);"></p>
+        </div>
+
+        <div id="admin-content" class="hidden">
+            <nav class="admin-tabs" role="tablist">
+                <button type="button" class="admin-tab active" role="tab" id="tab-ai-agent" aria-selected="true" aria-controls="panel-ai-agent">AI Agent</button>
+                <button type="button" class="admin-tab" role="tab" id="tab-policies" aria-selected="false" aria-controls="panel-policies">Policies & EOs</button>
+            </nav>
+            <div id="panel-ai-agent" class="admin-tab-panel active" role="tabpanel">
+            <div class="admin-section ai-agent">
+                <h2>AI Agent</h2>
+                <p>Search Executive Orders and Presidential Documents, or fetch by bill/EO number.</p>
+                <div class="ai-agent-actions">
+                    <input type="text" id="ai-search-query" placeholder="e.g. Black history, digital assets">
+                    <button type="button" id="ai-search-btn" class="btn btn-outline">Search Executive Orders</button>
+                </div>
+                <div class="ai-agent-actions" style="margin-top: var(--space-md);">
+                    <input type="number" id="ai-congress" placeholder="Congress (e.g. 118)" value="119" style="max-width: 100px;">
+                    <select id="ai-bill-type">
+                        <option value="hr">H.R.</option>
+                        <option value="s">S.</option>
+                        <option value="hjres">H.J.Res.</option>
+                        <option value="sjres">S.J.Res.</option>
+                    </select>
+                    <input type="number" id="ai-bill-number" placeholder="Bill number (e.g. 765)">
+                    <button type="button" id="ai-fetch-btn" class="btn btn-outline">Fetch from Congress.gov</button>
+                </div>
+                <div class="ai-agent-actions" style="margin-top: var(--space-md);">
+                    <input type="number" id="ai-eo-number" placeholder="Executive Order number (e.g. 14067)" style="max-width: 220px;">
+                    <button type="button" id="ai-fetch-eo-btn" class="btn btn-outline">Fetch Executive Order</button>
+                </div>
+                <div id="ai-output" class="ai-agent-output hidden"></div>
+            </div>
+            </div>
+
+            <div id="panel-policies" class="admin-tab-panel" role="tabpanel">
+            <div class="admin-section">
+                <h2>Policies</h2>
+                <ul id="admin-policy-list" class="policy-list"></ul>
+            </div>
+
+            <div class="admin-section">
+                <h2 id="policy-form-title">Add Policy</h2>
+                <form id="admin-policy-form" class="policy-form">
+                    <input type="hidden" id="policy-id">
+                    <div>
+                        <label for="policy-title">Title</label>
+                        <input type="text" id="policy-title" required>
+                    </div>
+                    <div>
+                        <label for="policy-shortTitle">Short Title</label>
+                        <input type="text" id="policy-shortTitle">
+                    </div>
+                    <div>
+                        <label for="policy-policyType">Policy Type</label>
+                        <select id="policy-policyType">
+                            <option value="bill">Bill / Legislation</option>
+                            <option value="executive_order">Executive Order</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="policy-impact">Impact</label>
+                        <select id="policy-impact">
+                            <option value="positive">Positive</option>
+                            <option value="negative">Negative</option>
+                            <option value="mixed">Mixed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="policy-status">Status</label>
+                        <select id="policy-status">
+                            <option value="pending">Pending</option>
+                            <option value="proposed">Proposed</option>
+                            <option value="enacted">Enacted</option>
+                            <option value="repealed">Repealed</option>
+                        </select>
+                    </div>
+                    <div id="policy-bill-row">
+                        <label for="policy-billNumber">Bill Number</label>
+                        <input type="text" id="policy-billNumber" placeholder="e.g. H.R. 765">
+                    </div>
+                    <div id="policy-eo-row" class="hidden">
+                        <label for="policy-executiveOrderNumber">Executive Order Number</label>
+                        <input type="number" id="policy-executiveOrderNumber" placeholder="e.g. 14067">
+                    </div>
+                    <div id="policy-congress-row">
+                        <label for="policy-congress">Congress</label>
+                        <input type="number" id="policy-congress" placeholder="e.g. 118">
+                    </div>
+                    <div>
+                        <label for="policy-summary">Summary</label>
+                        <textarea id="policy-summary" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <label for="policy-details">Details (impact on Black history)</label>
+                        <textarea id="policy-details" rows="12"></textarea>
+                    </div>
+                    <div id="policy-congress-urls">
+                        <div>
+                            <label for="policy-congressGovUrl">Congress.gov URL</label>
+                            <input type="url" id="policy-congressGovUrl">
+                        </div>
+                        <div>
+                            <label for="policy-govTrackUrl">GovTrack URL</label>
+                            <input type="url" id="policy-govTrackUrl">
+                        </div>
+                    </div>
+                    <div id="policy-federal-register-row" class="hidden">
+                        <label for="policy-federalRegisterUrl">Federal Register URL</label>
+                        <input type="url" id="policy-federalRegisterUrl" placeholder="https://www.federalregister.gov/documents/...">
+                    </div>
+                    <div class="policy-form-actions">
+                        <button type="submit" class="btn btn-primary">Save Policy</button>
+                        <button type="button" id="policy-cancel-btn" class="btn btn-outline">Cancel</button>
+                        <button type="button" id="ai-draft-btn" class="btn btn-outline">AI Draft Summary</button>
+                        <span id="ai-draft-status" class="ai-draft-status hidden"></span>
+                    </div>
+                </form>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script type="module" src="/src/admin.js"></script>
+</body>
+</html>

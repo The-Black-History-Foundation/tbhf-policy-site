@@ -1,23 +1,15 @@
 /**
  * TBHF Policy Site - Main script
- * Handles config application, DDME links, Bitcoin copy, and newsletter placeholder
+ * Handles config application, Bitcoin copy, newsletter placeholder
  */
 (function () {
   const config = window.TBHF_CONFIG || {};
 
   function applyConfig() {
-    const ddmeUrl = config.DDME_URL || 'http://localhost:5173';
     const bitcoinAddress = config.BITCOIN_ADDRESS || 'bc1q... (configure in config.js)';
     const btcpayUrl = config.BTCPAY_URL || '';
     const lightningAddress = config.LIGHTNING_ADDRESS || '';
     const lightningLnurl = config.LIGHTNING_LNURL || '';
-    const charityCoinUrl = config.CHARITY_COIN_URL || 'https://charity-coin-2.vercel.app';
-
-    // DDME links - point to DDME platform
-    const ddmeLinks = document.querySelectorAll('#ddme-nav-link, #ddme-cta-link, #ddme-footer-link');
-    ddmeLinks.forEach(function (el) {
-      el.href = ddmeUrl;
-    });
 
     // Volunteer CTA
     const volunteerUrl = config.VOLUNTEER_URL || 'https://tbhfdn.org/volunteer';
